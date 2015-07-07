@@ -5,7 +5,8 @@
 //  Created by Brian Kalski on 7/5/15.
 //  Copyright (c) 2015 BrianKalski. All rights reserved.
 //
-
+#import "Globals.h"
+#import "LocationService.h"
 #import "AppDelegate.h"
 
 @interface AppDelegate ()
@@ -16,7 +17,11 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
+    // Override point for customization after application launch
+    
+    Globals *tmp = [Globals sharedSingleton];
+    tmp.managedObjectContext = self.managedObjectContext;
+    
     return YES;
 }
 
