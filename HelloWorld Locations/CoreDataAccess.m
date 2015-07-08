@@ -12,7 +12,7 @@
 @implementation CoreDataAccess
 
 -(void) LoadSavedLocations{
-    //get data
+    //get data and load it into shared NSMutableArray
     Globals *tmp = [Globals sharedSingleton];
     managedObjectContext = tmp.managedObjectContext;
     NSFetchRequest *_fetchReqA = [[NSFetchRequest alloc] init];

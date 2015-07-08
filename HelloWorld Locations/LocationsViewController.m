@@ -26,8 +26,10 @@
     
     self.title = @"HelloWorld Locations";
     
+    //initialize singleton class
     self.tmp = [Globals sharedSingleton];
     
+    //set map view properties
     [self.mapView setDelegate:self];
     self.mapView.showsUserLocation = YES;
     
@@ -49,7 +51,7 @@
     locService.delegate = self;
     [locService GetLocationList];
     
-
+    //set UITableView properties
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     [self.tableView reloadData];
@@ -69,6 +71,7 @@
 
 - (void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation
 {
+    //set user's location
     MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(userLocation.coordinate, 500000, 500000);
     [self.mapView setRegion:[self.mapView regionThatFits:region] animated:YES];
     
@@ -77,6 +80,7 @@
 }
 
 - (void) SetCenterCoordinate:(CGFloat)latitude longitude:(CGFloat)longitude{
+    //sets map center after user chooses office location
     CLLocationCoordinate2D locationCoordinate;
     locationCoordinate.latitude = latitude;
     locationCoordinate.longitude = longitude;
@@ -86,12 +90,14 @@
 #pragma mark - Core Location methods
 
 -(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations {
+    //update user location
     self.location = locations.lastObject;
     userLatitude = self.location.coordinate.latitude;
     userLongitude = self.location.coordinate.longitude;
 }
 
 -(NSNumber*) GetDistanceFromOfficeToUserLocation:(CGFloat)officeLongitude officeLatitude:(CGFloat)officeLatitude {
+    //calculates distance from user's location to an office
     CLLocation *location1 = [[CLLocation alloc] initWithLatitude:officeLatitude longitude:officeLongitude];
     CLLocation *location2 = [[CLLocation alloc] initWithLatitude:userLatitude longitude:userLongitude];
     CGFloat distanceMeters = [location2 distanceFromLocation:location1];
@@ -100,19 +106,22 @@
 }
 
 - (void) GetLocationListResponse:(NSString*)response{
+    //Get response from class that calls web service to retrieve office data
     if([response isEqualToString:@"FAILED"]){
+        //web service call failed - load office data from Core Data into shared NSMutableArray
         CoreDataAccess *coreDataAccess = [[CoreDataAccess alloc] init];
         [coreDataAccess LoadSavedLocations];
         [self.tableView reloadData];
     }
     else{
+        //web service call was successful - shared NSMutableArray is populated and ready to use
         [self UpdateLocationsOnMap];
         [self.tableView reloadData];
     }
 }
 
 -(void) UpdateLocationsOnMap{
-    //Add Pins to MapView
+    //Loop through office locations and add pins to mapView
     CLLocationCoordinate2D locationCoordinate;
     MKPointAnnotation *marketAnnotation;
     
@@ -144,7 +153,7 @@
 }
 
 -(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-    return @"";//@"HelloWorld Locations";
+    return @"";
 }
 
 -(NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
@@ -165,6 +174,7 @@
     cell.lblOfficeAddress.text = location.address;
     cell.lblOfficeName.text = location.name;
     cell.lblDistanceToOffice.text = [NSString stringWithFormat:@"%@%@", [Globals stringByRounding:NSNumberFormatterRoundUp toPositionRightOfDecimal:2 numberToRound:location.distanceToOffice], @" miles"];
+    //set tag to row number so it can be used to pull up location details
     [cell.btnShowDetails setTag:indexPath.row];
     
     //Custom Colors
@@ -175,12 +185,14 @@
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    //center map on office location pressed
     Locations *location = (Locations*)[self.tmp.arrSavedLocations objectAtIndex:indexPath.row];
     [self SetCenterCoordinate:[location.latitude floatValue] longitude:[location.longitude floatValue]];
 }
 
 
 - (IBAction)ShowLocationDetails:(id)sender {
+    //push to Location Details view controller
     UIButton *btnShowDetails = (UIButton*)sender;
     NSInteger row = btnShowDetails.tag;
     

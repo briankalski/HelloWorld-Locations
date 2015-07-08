@@ -5,6 +5,7 @@
 //  Created by Brian Kalski on 7/5/15.
 //  Copyright (c) 2015 BrianKalski. All rights reserved.
 //
+//  Singleton class used to share data between various classes
 
 #import "Globals.h"
 

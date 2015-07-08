@@ -30,9 +30,15 @@
     self.lblOfficeAddress.text = [NSString stringWithFormat:@"%@%@%@", loc.address, @" ", loc.address2];
     self.lblOfficeAddress2.text = [NSString stringWithFormat:@"%@%@%@", loc.city, @" ", loc.state];
     self.lblDistanceToUserLocation.text = [NSString stringWithFormat:@"%@%@", [Globals stringByRounding:NSNumberFormatterRoundUp toPositionRightOfDecimal:2 numberToRound:loc.distanceToOffice], @" miles"];
+    
+    //Save phone number for call function
     phoneNumber = loc.phone;
+    
+    //Save Latitude and Longitude for directions function
     latitudeOffice = [loc.latitude floatValue];
     longitudeOffice = [loc.longitude floatValue];
+    
+    //Load office image async
     [self LoadOfficeImage:loc.office_image];
     
     //Set Custom Colors and Font Attributes
@@ -58,6 +64,7 @@
 }
 
 -(void) LoadOfficeImage:(NSString*)imageURL{
+    //use GCD to get and load image into UIImageView
     dispatch_queue_t imageQueue = dispatch_queue_create("Image Queue",NULL);
     dispatch_async(imageQueue, ^{
         
@@ -75,13 +82,14 @@
 
 
 - (IBAction)CallOffice:(id)sender{
+    //Call number on device
     NSString *phoneNumberString = [phoneNumber stringByReplacingOccurrencesOfString:@"[^0-9]" withString:@"" options:NSRegularExpressionSearch range:NSMakeRange(0, [phoneNumber length])];
     NSURL *phoneNum = [NSURL URLWithString:[@"telprompt://" stringByAppendingString:phoneNumberString]];
     [[UIApplication sharedApplication] openURL:phoneNum];
 }
 
 - (IBAction)GetDirections:(id)sender {
-    //first create latitude longitude object
+    //first create latitude longitude
     CLLocationCoordinate2D coordinate = CLLocationCoordinate2DMake(latitudeOffice,longitudeOffice);
     
     //create MKMapItem out of coordinates
