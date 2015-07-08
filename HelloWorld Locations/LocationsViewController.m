@@ -1,27 +1,30 @@
 //
-//  ViewController.m
+//  LocationsViewController.m
 //  HelloWorld Locations
 //
 //  Created by Brian Kalski on 7/5/15.
 //  Copyright (c) 2015 BrianKalski. All rights reserved.
 //
+#import "LocationDetailsViewController.h"
 #import "Locations.h"
 #import "LocationsTableViewCell.h"
 #import "CoreDataAccess.h"
 #import "LocationService.h"
-#import "HelloWorldMapViewController.h"
+#import "LocationsViewController.h"
 
-@interface HelloWorldMapViewController ()
+@interface LocationsViewController ()
 
 @end
 
-@implementation HelloWorldMapViewController{
+@implementation LocationsViewController{
     CGFloat userLatitude;
     CGFloat userLongitude;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.title = @"HelloWorld Locations";
     
     self.tmp = [Globals sharedSingleton];
     
@@ -68,6 +71,9 @@
 {
     MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(userLocation.coordinate, 500000, 500000);
     [self.mapView setRegion:[self.mapView regionThatFits:region] animated:YES];
+    
+    [self UpdateLocationsOnMap];
+    [self.tableView reloadData];
 }
 
 - (void) SetCenterCoordinate:(CGFloat)latitude longitude:(CGFloat)longitude{
@@ -110,14 +116,6 @@
     CLLocationCoordinate2D locationCoordinate;
     MKPointAnnotation *marketAnnotation;
     
-    //Update Locations array with distance to location
-    for(int i = 0; i < [self.tmp.arrSavedLocations count]; i++){
-        Locations *loc = (Locations*)[self.tmp.arrSavedLocations objectAtIndex:i];
-        loc.distanceToOffice = [self GetDistanceFromOfficeToUserLocation:[loc.longitude floatValue] officeLatitude:[loc.latitude floatValue]];
-        [self.tmp.arrSavedLocations removeObjectAtIndex:i];
-        [self.tmp.arrSavedLocations insertObject:loc atIndex:i];
-    }
-    
     //Add Pins to MapView
     for (Locations *location in self.tmp.arrSavedLocations) {
         marketAnnotation = [[MKPointAnnotation alloc]init];
@@ -126,6 +124,9 @@
         marketAnnotation.coordinate = locationCoordinate;
         marketAnnotation.title = location.name;
         marketAnnotation.subtitle = location.address;
+        
+        //Update Locations array with distance to location
+        location.distanceToOffice = [self GetDistanceFromOfficeToUserLocation:[location.longitude floatValue] officeLatitude:[location.latitude floatValue]];
         
         [self.mapView addAnnotation:marketAnnotation];
     }
@@ -143,7 +144,7 @@
 }
 
 -(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-    return @"HelloWorld Locations";
+    return @"";//@"HelloWorld Locations";
 }
 
 -(NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
@@ -164,6 +165,11 @@
     cell.lblOfficeAddress.text = location.address;
     cell.lblOfficeName.text = location.name;
     cell.lblDistanceToOffice.text = [NSString stringWithFormat:@"%@%@", [Globals stringByRounding:NSNumberFormatterRoundUp toPositionRightOfDecimal:2 numberToRound:location.distanceToOffice], @" miles"];
+    [cell.btnShowDetails setTag:indexPath.row];
+    
+    //Custom Colors
+    [cell.lblOfficeName setTextColor:self.tmp.orangeHWColor];
+    [cell.lblOfficeName setFont:[UIFont boldSystemFontOfSize:17]];
     
     return cell;
 }
@@ -174,4 +180,12 @@
 }
 
 
+- (IBAction)ShowLocationDetails:(id)sender {
+    UIButton *btnShowDetails = (UIButton*)sender;
+    NSInteger row = btnShowDetails.tag;
+    
+    LocationDetailsViewController *svc = [self.storyboard instantiateViewControllerWithIdentifier:@"LocationDetailsViewController"];
+    svc.row = row;
+    [self.navigationController pushViewController:svc animated:YES];
+}
 @end

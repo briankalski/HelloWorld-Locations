@@ -13,6 +13,8 @@
 
 @property (nonatomic, assign) NSManagedObjectContext *managedObjectContext;
 @property (nonatomic, retain) NSMutableArray *arrSavedLocations;
+@property (nonatomic, retain) UIColor *blueHWColor;
+@property (nonatomic, retain) UIColor *orangeHWColor;
 
 + (NSString *)stringByRounding:(NSNumberFormatterRoundingMode)roundingMode toPositionRightOfDecimal:(NSUInteger)position numberToRound:(NSNumber*)numberToRound;
 

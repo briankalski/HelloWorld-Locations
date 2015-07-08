@@ -30,6 +30,22 @@
         else{
             self.arrSavedLocations = [def objectForKey:@"arrSavedLocations"];
         }
+        
+        if([def objectForKey:@"blueHWColor"] == nil){
+            [def setObject:self.blueHWColor forKey:@"blueHWColor"];
+            [def synchronize];
+        }
+        else{
+            self.blueHWColor = [def objectForKey:@"blueHWColor"];
+        }
+        
+        if([def objectForKey:@"orangeHWColor"] == nil){
+            [def setObject:self.orangeHWColor forKey:@"orangeHWColor"];
+            [def synchronize];
+        }
+        else{
+            self.orangeHWColor = [def objectForKey:@"orangeHWColor"];
+        }
     }
     return  self;
 }

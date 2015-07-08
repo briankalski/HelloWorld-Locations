@@ -1,5 +1,5 @@
 //
-//  ViewController.h
+//  LocationsViewController.h
 //  HelloWorld Locations
 //
 //  Created by Brian Kalski on 7/5/15.
@@ -10,7 +10,7 @@
 #import <UIKit/UIKit.h>
 #import <CoreLocation/CoreLocation.h>
 
-@interface HelloWorldMapViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, CLLocationManagerDelegate, MKMapViewDelegate>
+@interface LocationsViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, CLLocationManagerDelegate, MKMapViewDelegate>
 
 @property (strong, nonatomic) IBOutlet MKMapView *mapView;
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
@@ -18,6 +18,8 @@
 @property (strong, nonatomic) Globals *tmp;
 @property (strong, nonatomic) CLLocationManager *locationManager;
 @property (strong, nonatomic) CLLocation *location;
+@property (strong, nonatomic) IBOutlet UIButton *btnShowDetails;
+- (IBAction)ShowLocationDetails:(id)sender;
 
 @end
 

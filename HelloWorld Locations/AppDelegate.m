@@ -22,6 +22,21 @@
     Globals *tmp = [Globals sharedSingleton];
     tmp.managedObjectContext = self.managedObjectContext;
     
+    //Set colors
+    tmp.blueHWColor = [UIColor colorWithRed:0 green:136.0/255 blue:199.0/255.0 alpha:1.0];
+    tmp.orangeHWColor = [UIColor colorWithRed:255/255 green:80.0/255 blue:14.0/255.0 alpha:1.0];
+    
+    //navigation bar properties
+    [[UINavigationBar appearance] setBarTintColor:tmp.blueHWColor];
+    
+    //Set Navigation Bar text attributes
+    NSDictionary *textAttributes = @{ NSForegroundColorAttributeName: [UIColor whiteColor],
+                                      NSFontAttributeName: [UIFont systemFontOfSize:17.0f]
+                                      };
+    [[UINavigationBar appearance] setTitleTextAttributes:textAttributes];
+    
+    [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
+    
     return YES;
 }
 

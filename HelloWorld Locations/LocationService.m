@@ -24,6 +24,8 @@
     
     [request setCachePolicy:NSURLRequestReloadIgnoringLocalCacheData];
     
+    [request setTimeoutInterval:2];
+    
     (void)[[NSURLConnection alloc] initWithRequest:request delegate:self];
     
 }

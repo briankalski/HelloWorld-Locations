@@ -10,7 +10,7 @@
 		EC17129D1B499C5000EC5AEF /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = EC17129C1B499C5000EC5AEF /* main.m */; };
 		EC1712A01B499C5000EC5AEF /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EC17129F1B499C5000EC5AEF /* AppDelegate.m */; };
 		EC1712A31B499C5000EC5AEF /* HelloWorld_Locations.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = EC1712A11B499C5000EC5AEF /* HelloWorld_Locations.xcdatamodeld */; };
-		EC1712A61B499C5000EC5AEF /* HelloWorldMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC1712A51B499C5000EC5AEF /* HelloWorldMapViewController.m */; };
+		EC1712A61B499C5000EC5AEF /* LocationsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC1712A51B499C5000EC5AEF /* LocationsViewController.m */; };
 		EC1712A91B499C5000EC5AEF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EC1712A71B499C5000EC5AEF /* Main.storyboard */; };
 		EC1712AB1B499C5000EC5AEF /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EC1712AA1B499C5000EC5AEF /* Images.xcassets */; };
 		EC1712AE1B499C5000EC5AEF /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = EC1712AC1B499C5000EC5AEF /* LaunchScreen.xib */; };
@@ -24,6 +24,7 @@
 		EC1712DD1B4A219A00EC5AEF /* LocationsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EC1712DC1B4A219A00EC5AEF /* LocationsTableViewCell.m */; };
 		EC1712E21B4A33A300EC5AEF /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC1712E11B4A33A300EC5AEF /* CoreLocation.framework */; };
 		ECECCCB81B4B97CA005B35AA /* Locations.m in Sources */ = {isa = PBXBuildFile; fileRef = ECECCCB71B4B97CA005B35AA /* Locations.m */; };
+		ECECCCBE1B4CAC4F005B35AA /* LocationDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ECECCCBD1B4CAC4F005B35AA /* LocationDetailsViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -43,8 +44,8 @@
 		EC17129E1B499C5000EC5AEF /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		EC17129F1B499C5000EC5AEF /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		EC1712A21B499C5000EC5AEF /* HelloWorld_Locations.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = HelloWorld_Locations.xcdatamodel; sourceTree = "<group>"; };
-		EC1712A41B499C5000EC5AEF /* HelloWorldMapViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HelloWorldMapViewController.h; sourceTree = "<group>"; };
-		EC1712A51B499C5000EC5AEF /* HelloWorldMapViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HelloWorldMapViewController.m; sourceTree = "<group>"; };
+		EC1712A41B499C5000EC5AEF /* LocationsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LocationsViewController.h; sourceTree = "<group>"; };
+		EC1712A51B499C5000EC5AEF /* LocationsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LocationsViewController.m; sourceTree = "<group>"; };
 		EC1712A81B499C5000EC5AEF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		EC1712AA1B499C5000EC5AEF /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		EC1712AD1B499C5000EC5AEF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
@@ -66,6 +67,8 @@
 		EC1712E11B4A33A300EC5AEF /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		ECECCCB61B4B97CA005B35AA /* Locations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Locations.h; path = ../Locations.h; sourceTree = "<group>"; };
 		ECECCCB71B4B97CA005B35AA /* Locations.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Locations.m; path = ../Locations.m; sourceTree = "<group>"; };
+		ECECCCBC1B4CAC4F005B35AA /* LocationDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationDetailsViewController.h; sourceTree = "<group>"; };
+		ECECCCBD1B4CAC4F005B35AA /* LocationDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationDetailsViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,21 +116,23 @@
 		EC1712991B499C5000EC5AEF /* HelloWorld Locations */ = {
 			isa = PBXGroup;
 			children = (
-				EC1712CC1B49BBFF00EC5AEF /* Entities */,
 				EC1712C51B49B7B400EC5AEF /* Action Classes */,
+				EC1712CC1B49BBFF00EC5AEF /* Entities */,
 				EC17129E1B499C5000EC5AEF /* AppDelegate.h */,
 				EC17129F1B499C5000EC5AEF /* AppDelegate.m */,
-				EC1712A41B499C5000EC5AEF /* HelloWorldMapViewController.h */,
-				EC1712A51B499C5000EC5AEF /* HelloWorldMapViewController.m */,
-				EC1712A71B499C5000EC5AEF /* Main.storyboard */,
-				EC1712AA1B499C5000EC5AEF /* Images.xcassets */,
-				EC1712AC1B499C5000EC5AEF /* LaunchScreen.xib */,
-				EC1712A11B499C5000EC5AEF /* HelloWorld_Locations.xcdatamodeld */,
-				EC17129A1B499C5000EC5AEF /* Supporting Files */,
 				EC1712D31B49BD0500EC5AEF /* Globals.h */,
 				EC1712D41B49BD0500EC5AEF /* Globals.m */,
+				EC1712A11B499C5000EC5AEF /* HelloWorld_Locations.xcdatamodeld */,
+				EC1712AA1B499C5000EC5AEF /* Images.xcassets */,
+				EC1712AC1B499C5000EC5AEF /* LaunchScreen.xib */,
+				ECECCCBC1B4CAC4F005B35AA /* LocationDetailsViewController.h */,
+				ECECCCBD1B4CAC4F005B35AA /* LocationDetailsViewController.m */,
 				EC1712DB1B4A219A00EC5AEF /* LocationsTableViewCell.h */,
 				EC1712DC1B4A219A00EC5AEF /* LocationsTableViewCell.m */,
+				EC1712A41B499C5000EC5AEF /* LocationsViewController.h */,
+				EC1712A51B499C5000EC5AEF /* LocationsViewController.m */,
+				EC1712A71B499C5000EC5AEF /* Main.storyboard */,
+				EC17129A1B499C5000EC5AEF /* Supporting Files */,
 			);
 			path = "HelloWorld Locations";
 			sourceTree = "<group>";
@@ -282,12 +287,13 @@
 			files = (
 				EC1712D51B49BD0500EC5AEF /* Globals.m in Sources */,
 				EC1712A31B499C5000EC5AEF /* HelloWorld_Locations.xcdatamodeld in Sources */,
+				ECECCCBE1B4CAC4F005B35AA /* LocationDetailsViewController.m in Sources */,
 				EC1712C81B49B83900EC5AEF /* LocationService.m in Sources */,
 				EC1712CB1B49B9A300EC5AEF /* JSONKit.m in Sources */,
 				EC1712A01B499C5000EC5AEF /* AppDelegate.m in Sources */,
 				EC1712D81B49C81700EC5AEF /* CoreDataAccess.m in Sources */,
 				ECECCCB81B4B97CA005B35AA /* Locations.m in Sources */,
-				EC1712A61B499C5000EC5AEF /* HelloWorldMapViewController.m in Sources */,
+				EC1712A61B499C5000EC5AEF /* LocationsViewController.m in Sources */,
 				EC1712DD1B4A219A00EC5AEF /* LocationsTableViewCell.m in Sources */,
 				EC17129D1B499C5000EC5AEF /* main.m in Sources */,
 			);
